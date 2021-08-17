@@ -1,0 +1,6 @@
+{
+  "liveServer.settings.port": 80,
+  "liveServer.settings.root": "/",
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 300
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+    <title>Chat room</title>
+    <style>
+      .vh-75 {
+        height: 85vh;
+      }
+      ul {
+        overflow-y: auto;
+      }
+      .list-group-item {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+      }
+      ul > .list-group-item:nth-child(2n) {
+        background-color: var(--bs-gray-200);
+      }
+      .rounded-top-0 {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+      .rounded-bottom-0 {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .-mt-1px {
+        margin-top: -1px;
+      }
+      .-mb-1px {
+        margin-bottom: -1px;
+      }
+      .bg-gradient-grren-blue {
+        min-height: 100vh;
+        background-image: linear-gradient(to right bottom, #8f8, #88f);
+      }
+      .bg-orange {
+        background-color: #fa6 !important;
+      }
+      .private-inset-border {
+        box-shadow: inset 0 0 0 2px #ffc488;
+      }
+      @media (min-width: 992px) {
+        .flex-grow-xl-5 {
+          flex-grow: 5 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/" method="get" class="container py-3" id="userForm">
+      <div class="row flex-column align-items-center gy-3">
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Name" name="Name" placeholder="Name" value="test" autocomplete="off" />
+            <label for="Name">Name</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select class="form-select" id="Room" name="Room">
+              <option disabled selected>Select room</option>
+              <option value="r1">1</option>
+              <option value="r2" selected>2</option>
+              <option value="r3">3</option>
+            </select>
+            <label for="Room">Room</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Gender" id="Male" value="Male" checked />
+            <label class="form-check-label" for="Male">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Gender" id="Female" value="Female" />
+            <label class="form-check-label" for="Female">Female</label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Enter</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="container-fluid bg-gradient-grren-blue d-none py-3" id="chatRoom">
+      <div class="row h6 mb-0">
+        <div class="col-8 col-md-9 col-xl-10">
+          <div class="input-group -mb-1px">
+            <label for="rooms" class="input-group-text rounded-bottom-0">Room</label>
+            <select class="form-select rounded-bottom-0" id="rooms">
+              <option selected value="r1">1</option>
+              <option value="r2">2</option>
+              <option value="r3">3</option>
+            </select>
+          </div>
+          <ul class="list-group list-group-flush list-unstyled border bg-white vh-75" id="chatbox"></ul>
+          <div class="input-group -mt-1px">
+            <label for="privateTalkCheck" class="input-group-text rounded-top-0">Private</label>
+
+            <div class="input-group-text">
+              <input class="form-check-input mt-0" type="checkbox" id="privateTalkCheck" aria-label="Checkbox for following text input" disabled />
+            </div>
+            <select class="form-select" id="users">
+              <option value="" selected>Everybody</option>
+            </select>
+            <input type="text" class="form-control rounded-top-0 flex-grow-xl-5" id="textbox" autocomplete="off" />
+            <button class="btn btn-secondary rounded-top-0" type="button" id="send">Send</button>
+          </div>
+          <!-- <form action="/" id="chatForm"> -->
+          <!-- <div class="row gy-2 gx-0 gx-md-2 gy-md-0"> -->
+          <!-- <div class="col-md-4 col-lg-6"> -->
+          <!-- <div class="input-group">
+            <label for="rooms" class="input-group-text">Room</label>
+            <select class="form-select" id="rooms">
+              <option selected value="r1">1</option>
+              <option value="r2">2</option>
+              <option value="r3">3</option>
+            </select>
+          </div> -->
+          <!-- </div> -->
+          <!-- <div class="col-md-8 col-lg-6">
+              <div class="input-group"></div>
+            </div> -->
+          <!-- </div> -->
+          <!-- </form> -->
+        </div>
+        <div class="col-4 col-md-3 col-xl-2">
+          <ul class="list-group list-group-flush list-unstyled border h-100" id="userList"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="./node_modules/socket.io-client/dist/socket.io.min.js"></script>
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>
